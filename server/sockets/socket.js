@@ -9,11 +9,11 @@ io.on('connection', (client) => {
     
     console.log('Usuario conectado');
 
-    var actual = `Ticket ${ ticketControl.getUltimoTicket() }`;
+    //var actual = `Ticket ${ ticketControl.getUltimoTicket() }`;
 
     // Enviar Mensaje al cliente
     client.emit('estadoActual', {
-        actual
+        actual: `Ticket ${ ticketControl.getUltimoTicket() }`
     } );
 
     // client.on('disconnect', () => {
@@ -30,6 +30,23 @@ io.on('connection', (client) => {
         console.log( nTicket );
         
         callback( nTicket );
+
+    });
+
+    client.on('atenderTicket', ( data, callback) => {
+
+        if (!data.escritorio) {
+            return callback({
+                err: true,
+                mensaje: 'Escritorio necesario'
+            });
+        }
+
+        let atenderTicket = ticketControl.atenderTicket( data.escritorio );
+
+        callback( atenderTicket );
+
+        //actualizar /notificar cambios el los ultimos 4
 
     });
     
