@@ -1,37 +1,36 @@
 
 const { io } = require('../server');
 
+const { TicketControl } = require('../classes/ticket-control');
+
+const ticketControl = new TicketControl();
+
 io.on('connection', (client) => {
     
     console.log('Usuario conectado');
 
-    // Enviar Mensaje al cliente
-    client.emit('enviarMensaje',{
-        usuario: 'Admin',
-        mensaje: 'Bienvenido a la app'
-    });
+    var actual = `Ticket ${ ticketControl.getUltimoTicket() }`;
 
-    client.on('disconnect', () => {
+    // Enviar Mensaje al cliente
+    client.emit('estadoActual', {
+        actual
+    } );
+
+    // client.on('disconnect', () => {
         
-        console.log('Usuario desconectado');
+    //     console.log('Usuario desconectado');
         
-    });
+    // });
 
     // Escuchar cliente
-    client.on('enviarMensaje', (data, callback) => {
-        console.log(data);
+    client.on('siguienteTicket', (data, callback) => {
 
-        client.broadcast.emit('enviarMensaje',data)
+        var nTicket =  `Ticket ${ ticketControl.siguiente() }`;
 
-        // if (mensaje.usuario) {
-        //     callback({
-        //         resp: 'Connected Ok'
-        //     });
-        // } else {
-        //     callback({
-        //         resp: 'Connection Failed'
-        //     });
-        // }
+        console.log( nTicket );
+        
+        callback( nTicket );
+
     });
     
 });
