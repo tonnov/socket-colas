@@ -33,6 +33,7 @@ $('button').on('click', function() {
     socket.emit('atenderTicket', { escritorio: escritorio }, function(resp) {
         
         console.log(resp);
+        label.text(`Ticket ${ resp.numero }`);
         
     });
 });

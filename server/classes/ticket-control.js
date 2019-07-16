@@ -62,17 +62,18 @@ class TicketControl {
         }
 
         let numeroTicket = this.tickets[0].numero;
-        this.tickets.shift();
+        this.tickets.shift(); //Elimina la primera posicion del array
 
         let atenderTicket = new Ticket( numeroTicket, escritorio );
 
-        this.ultimos4.unshift( atenderTicket );
+        this.ultimos4.unshift( atenderTicket ); //Agrega elemento al inicio del arreglo
 
-        if (this.ultimos4.legth > 4) {
-            this.ultimos4.splice(-1,1); //borra ultimos elemento
+        if (this.ultimos4.length > 4) {
+            this.ultimos4.splice(-1,1); //borra ultimo elemento
         }
 
-        console.log('LastFour', this.ultimos4);
+        console.log('LastFour');
+        console.log(this.ultimos4);
 
         this.grabarArchivo();
         

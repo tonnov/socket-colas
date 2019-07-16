@@ -46,7 +46,7 @@ io.on('connection', (client) => {
 
         callback( atenderTicket );
 
-        //actualizar /notificar cambios el los ultimos 4
+        // actualizar/notificar cambios el los ultimos 4
 
     });
     
