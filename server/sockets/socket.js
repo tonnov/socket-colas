@@ -13,7 +13,8 @@ io.on('connection', (client) => {
 
     // Enviar Mensaje al cliente
     client.emit('estadoActual', {
-        actual: `Ticket ${ ticketControl.getUltimoTicket() }`
+        actual: `Ticket ${ ticketControl.getUltimoTicket() }`,
+        ultimos4: ticketControl.getUltimos4()
     } );
 
     // client.on('disconnect', () => {

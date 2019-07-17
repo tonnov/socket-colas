@@ -55,6 +55,10 @@ class TicketControl {
         
     }
 
+    getUltimos4(){
+        return this.ultimos4;
+    }
+
     atenderTicket( escritorio ){
 
         if (this.tickets.length === 0) {
