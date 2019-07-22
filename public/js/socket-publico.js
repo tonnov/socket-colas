@@ -30,10 +30,17 @@ var lblEscritorios = [lblEscritorio1,lblEscritorio2,lblEscritorio3,lblEscritorio
 
 socket.on('estadoActual', function(data){
     
-    console.log(data);
+    //console.log(data);
 
     actualizaHTML(data.ultimos4);
 
+});
+
+socket.on('refreshScreen', function(data) {
+    
+    //console.log(data);
+    actualizaHTML(data.ultimos4);
+    
 });
 
 function actualizaHTML(ultimos4){
