@@ -6,3 +6,4 @@ node_modules/
 
 *.jpg
 *.jpeg
+server/data/data.json
