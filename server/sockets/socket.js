@@ -49,6 +49,10 @@ io.on('connection', (client) => {
 
         // actualizar/notificar cambios el los ultimos 4
 
+        client.broadcast.emit('refreshScreen', {
+            ultimos4: ticketControl.getUltimos4()
+        });
+
     });
     
 });
