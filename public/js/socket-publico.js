@@ -39,6 +39,9 @@ socket.on('estadoActual', function(data){
 socket.on('refreshScreen', function(data) {
     
     //console.log(data);
+
+    var audio = new Audio('audio/new-ticket.mp3');
+    audio.play();
     actualizaHTML(data.ultimos4);
     
 });
